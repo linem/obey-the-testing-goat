@@ -1,7 +1,13 @@
 db.sqlite3
-.venv
 __pycache__
 *.pyc
 /static
 src/db.sqlite3
 src/static
+
+# uv stuff
+.venv
+.python-version
+pyproject.toml
+uv.lock
+
