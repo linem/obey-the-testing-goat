@@ -12,3 +12,6 @@ pyproject.toml
 uv.lock
 src/obey_the_testing_goat/__init__.py
 
+# selenium stuff
+geckodriver.log
+
