@@ -1,7 +1,6 @@
-from django.conf.urls import url
-from lists import views
+from django.urls import path
+from lists.views import home_page
 
 urlpatterns = [
-    url(r'^$', views.home_page, name='home'),
+    path("", home_page, name="home"),
 ]
-
