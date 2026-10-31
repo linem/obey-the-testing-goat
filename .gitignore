@@ -5,11 +5,12 @@ __pycache__
 /static
 src/db.sqlite3
 src/static
+.DS_Store
 
 # uv stuff
 .python-version
 pyproject.toml
 uv.lock
-src
+src/obey_the_testing_goat
 
 geckodriver.log
