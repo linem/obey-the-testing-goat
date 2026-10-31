@@ -5,3 +5,11 @@ __pycache__
 /static
 src/db.sqlite3
 src/static
+
+# uv stuff
+.python-version
+pyproject.toml
+uv.lock
+src
+
+geckodriver.log
