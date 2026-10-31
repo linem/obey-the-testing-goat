@@ -10,18 +10,8 @@ class HomePageTest(TestCase):
 
     def test_renders_input_form(self):
         response = self.client.get("/")
-        self.assertContains(response, '<form method="POST" action="/">')
+        self.assertContains(response, '<form method="POST" action="/lists/new">')
         self.assertContains(response, '<input name="item_text"')
-
-    def test_can_save_a_POST_request(self):
-        self.client.post("/", data={"item_text": "A new list item"})
-        self.assertEqual(Item.objects.count(), 1)
-        new_item = Item.objects.first()
-        self.assertEqual(new_item.text, "A new list item")
-
-    def test_redirects_after_POST(self):
-        response = self.client.post("/", data={"item_text": "A new list item"})
-        self.assertRedirects(response, "/lists/the-only-list-in-the-world/")
 
     def test_only_saves_items_when_necessary(self):
         self.client.get("/")
@@ -50,7 +40,7 @@ class ItemModelTest(TestCase):
 class ListViewTest(TestCase):
     def test_renders_input_form(self):
         response = self.client.get("/lists/the-only-list-in-the-world/")
-        self.assertContains(response, '<form method="POST" action="/">')
+        self.assertContains(response, '<form method="POST" action="/lists/new">')
         self.assertContains(response, '<input name="item_text"')
 
     def test_displays_all_list_items(self):
@@ -65,3 +55,14 @@ class ListViewTest(TestCase):
     def test_uses_home_template(self):
         response = self.client.get("/lists/the-only-list-in-the-world/")
         self.assertTemplateUsed(response, "list.html")
+
+class NewListTest(TestCase):
+    def test_can_save_a_POST_request(self):
+        self.client.post("/lists/new", data={"item_text": "A new list item"})
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, "A new list item")
+
+    def test_redirects_after_POST(self):
+        response = self.client.post("/lists/new", data={"item_text": "A new list item"})
+        self.assertRedirects(response, "/lists/the-only-list-in-the-world/")
