@@ -15,3 +15,6 @@ obey-the-testing-goat = "obey_the_testing_goat:main"
 [build-system]
 requires = ["uv_build>=0.12.17,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv]
+package = false
